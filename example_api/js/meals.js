@@ -29,11 +29,11 @@ const displayMeals = meals => {
     })
 }
 
-const searchFood = () => {
+const searchFood = () =>{
     const searchField = document.getElementById('search-field');
-    const searchText = searchField.Value;
+    const searchText = searchField.value;
     loadMeals(searchText);
-    searchField.Value = '';
+    searchField.value = '';
 }
 
- //loadMeals('a')
+// loadMeals('fish')
