@@ -19,6 +19,8 @@ const displayCountries = countries => {
         <h4>Official : ${country.name.official}</h4>
         <h5>Tld : ${country.tld}</h5>
         <p>Capital : ${country.capital ? country.capital[0] : 'No Capital'}</p>
+
+        <button onClick="loadCountryDetail('${country.cca2}')">Details</button>
         
         `;
 
@@ -27,5 +29,24 @@ const displayCountries = countries => {
 
     }
 
+loadCountryDetail = (code) => {
+        // https://restcountries.com/v3.1/alpha/{code}
+   
+    const url = `https://restcountries.com/v3.1/alpha/${code}`
+    // console.log('get country detail' , code)
+    // console.log(url);
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayCountryDetail(data[0]))
+}
 
+const displayCountryDetail = country => {
+    const countryDetail = document.getElementById('country-detail');
+    countryDetail.innerHTML  = `
+      <h2>Name :  ${country.name.common}</h2>
+      <h5>official : ${country.name.official}</h5>
+      <h5>Native Name : ${country.name.official.nativeName}</h5>
+      <img src="${country.flags.png}">
+    `
+}
 loadCountries();
